@@ -1,0 +1,1351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Handbook - Interactive Learning Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" media="(prefers-color-scheme: dark)">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="light-theme">
+<!-- Progress Bar -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-content">
+        <h1 class="logo">
+            <i class="fas fa-code"></i>
+            CSS Handbook
+        </h1>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="search-toggle" id="search-toggle" title="Search (Ctrl+K)">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+    <div class="search-modal-content">
+        <div class="search-input-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search handbook..." autofocus>
+            <kbd class="search-shortcut">ESC</kbd>
+        </div>
+        <div class="search-results" id="search-results"></div>
+    </div>
+</div>
+
+<div class="app-container">
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Table of Contents</h2>
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <ul class="nav-list" id="nav-list">
+                <li class="nav-item">
+                    <a href="#overview" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Course Overview
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#module1" class="nav-link">
+                        <i class="fas fa-play-circle"></i>
+                        Module 1: Getting Started
+                    </a>
+                    <ul class="nav-sublist">
+                        <li><a href="#what-is-css" class="nav-link">What is CSS?</a></li>
+                        <li><a href="#web-trinity" class="nav-link">How CSS Fits in the Web</a></li>
+                        <li><a href="#ways-to-add-css" class="nav-link">Ways to Add CSS</a></li>
+                        <li><a href="#first-exercise" class="nav-link">First CSS Exercise</a></li>
+                        <li><a href="#under-the-hood" class="nav-link">Under the Hood</a></li>
+                        <li><a href="#checkpoint-quiz" class="nav-link">Checkpoint Quiz</a></li>
+                        <li><a href="#best-practices" class="nav-link">Best Practices</a></li>
+                        <li><a href="#common-mistakes" class="nav-link">Common Mistakes</a></li>
+                        <li><a href="#summary" class="nav-link">Summary</a></li>
+                        <li><a href="#interactive-challenge" class="nav-link">Interactive Challenge</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#module2" class="nav-link">
+                        <i class="fas fa-crosshairs"></i>
+                        Module 2: CSS Syntax & Selectors
+                    </a>
+                    <ul class="nav-sublist">
+                        <li><a href="#css-rule-syntax" class="nav-link">CSS Rule Syntax</a></li>
+                        <li><a href="#types-of-selectors" class="nav-link">Types of Selectors</a></li>
+                        <li><a href="#grouping-combining" class="nav-link">Grouping & Combining</a></li>
+                        <li><a href="#attribute-selectors" class="nav-link">Attribute Selectors</a></li>
+                        <li><a href="#pseudo-classes-preview" class="nav-link">Pseudo-classes Preview</a></li>
+                        <li><a href="#specificity-cascade" class="nav-link">Specificity & Cascade</a></li>
+                        <li><a href="#module2-quiz" class="nav-link">Module 2 Quiz</a></li>
+                        <li><a href="#module2-tasks" class="nav-link">Practice Tasks</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#module3" class="nav-link">
+                        <i class="fas fa-palette"></i>
+                        Module 3: Colors, Units & Values
+                    </a>
+                    <ul class="nav-sublist">
+                        <li><a href="#working-with-colors" class="nav-link">Working with Colors</a></li>
+                        <li><a href="#css-units" class="nav-link">CSS Units</a></li>
+                        <li><a href="#value-types" class="nav-link">Value Types</a></li>
+                        <li><a href="#calc-function" class="nav-link">The calc() Function</a></li>
+                        <li><a href="#transparent-colors" class="nav-link">Transparent Colors</a></li>
+                        <li><a href="#module3-quiz" class="nav-link">Module 3 Quiz</a></li>
+                        <li><a href="#module3-project" class="nav-link">Mini Project</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            <!-- Overview Section -->
+            <section id="overview" class="content-section">
+                <h1>CSS Handbook</h1>
+                <p class="lead">A comprehensive, interactive guide to mastering CSS from basics to advanced techniques.</p>
+
+                <div class="collapsible-section" data-section="structure-overview">
+                    <h2 class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        Structure Overview
+                    </h2>
+                    <div class="section-content">
+                        <p>We'll divide the course into <strong>15 major modules</strong>, each broken into subtopics:</p>
+
+                        <div class="table-container">
+                            <table class="module-table">
+                                <thead>
+                                <tr>
+                                    <th>Module</th>
+                                    <th>Focus Area</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1. Getting Started with CSS</td>
+                                    <td>What CSS is, how it works, how it fits with HTML</td>
+                                </tr>
+                                <tr>
+                                    <td>2. CSS Syntax & Selectors</td>
+                                    <td>Writing rules, types of selectors, specificity</td>
+                                </tr>
+                                <tr>
+                                    <td>3. Colors, Units, and Values</td>
+                                    <td>Colors, lengths, percentages, and calc()</td>
+                                </tr>
+                                <tr>
+                                    <td>4. The Box Model</td>
+                                    <td>Margin, padding, borders, sizing, and layout</td>
+                                </tr>
+                                <tr>
+                                    <td>5. Typography</td>
+                                    <td>Fonts, line-height, spacing, readability</td>
+                                </tr>
+                                <tr>
+                                    <td>6. Positioning & Display</td>
+                                    <td>Static, relative, absolute, fixed, sticky</td>
+                                </tr>
+                                <tr>
+                                    <td>7. Flexbox</td>
+                                    <td>One-dimensional layouts</td>
+                                </tr>
+                                <tr>
+                                    <td>8. CSS Grid</td>
+                                    <td>Two-dimensional layouts</td>
+                                </tr>
+                                <tr>
+                                    <td>9. Responsive Design</td>
+                                    <td>Media queries, fluid grids, breakpoints</td>
+                                </tr>
+                                <tr>
+                                    <td>10. Backgrounds & Gradients</td>
+                                    <td>Images, gradients, overlays</td>
+                                </tr>
+                                <tr>
+                                    <td>11. Transitions & Animations</td>
+                                    <td>Smooth effects, keyframes</td>
+                                </tr>
+                                <tr>
+                                    <td>12. Pseudo-classes & Pseudo-elements</td>
+                                    <td>:hover, :before, :nth-child, etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>13. Inheritance, Cascade, Specificity</td>
+                                    <td>How CSS is resolved by the browser</td>
+                                </tr>
+                                <tr>
+                                    <td>14. CSS Architecture & Methodologies</td>
+                                    <td>BEM, OOCSS, SCSS basics</td>
+                                </tr>
+                                <tr>
+                                    <td>15. Real Projects & Capstone Challenges</td>
+                                    <td>Build landing pages, components, etc.</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module 1 -->
+            <section id="module1" class="content-section">
+                <h1>📘 Module 1: Getting Started with CSS</h1>
+
+                <div class="goal-box">
+                    <h3>🎯 Goal:</h3>
+                    <p>Understand what CSS is, how it works with HTML, how the browser interprets it, and how to start writing it.</p>
+                </div>
+
+                <!-- What is CSS Section -->
+                <div class="collapsible-section" data-section="what-is-css">
+                    <h2 id="what-is-css" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🧠 1.1 What is CSS?
+                    </h2>
+                    <div class="section-content">
+                        <p><strong>CSS (Cascading Style Sheets)</strong> is the language used to describe the presentation (layout, colors, fonts) of HTML documents.</p>
+
+                        <p><strong>Why CSS matters:</strong></p>
+                        <ul>
+                            <li>Separates content (HTML) from presentation.</li>
+                            <li>Makes it easier to maintain, scale, and reuse design logic.</li>
+                            <li>Critical for responsive, interactive, and beautiful UIs.</li>
+                        </ul>
+
+                        <div class="example-box">
+                            <h4>📦 Example:</h4>
+                            <div class="code-example">
+                                    <pre><code class="language-html">&lt;!-- HTML --&gt;
+&lt;p&gt;Hello, CSS!&lt;/p&gt;
+
+&lt;!-- CSS --&gt;
+p {
+  color: blue;
+  font-size: 20px;
+}</code></pre>
+                            </div>
+                            <div class="live-example">
+                                <p style="color: blue; font-size: 20px;">Hello, CSS!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Trinity Section -->
+                <div class="collapsible-section" data-section="web-trinity">
+                    <h2 id="web-trinity" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🏗 1.2 How CSS Fits in the Web
+                    </h2>
+                    <div class="section-content">
+                        <h3>The "Trinity": HTML + CSS + JS</h3>
+                        <div class="trinity-grid">
+                            <div class="trinity-item">
+                                <h4>HTML</h4>
+                                <p>Structure (e.g., "this is a paragraph")</p>
+                            </div>
+                            <div class="trinity-item">
+                                <h4>CSS</h4>
+                                <p>Presentation (e.g., "make it blue and centered")</p>
+                            </div>
+                            <div class="trinity-item">
+                                <h4>JS</h4>
+                                <p>Behavior (e.g., "animate it when clicked")</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ways to Add CSS -->
+                <div class="collapsible-section" data-section="ways-to-add-css">
+                    <h2 id="ways-to-add-css" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🔌 1.3 Ways to Add CSS
+                    </h2>
+                    <div class="section-content">
+                        <p>There are <strong>3 main methods</strong>:</p>
+
+                        <div class="method-card">
+                            <h4>1. Inline CSS (Avoid for reuse):</h4>
+                            <pre><code class="language-html">&lt;p style="color: red;"&gt;Red text&lt;/p&gt;</code></pre>
+                        </div>
+
+                        <div class="method-card">
+                            <h4>2. Internal CSS (in &lt;style&gt; tag):</h4>
+                            <pre><code class="language-html">&lt;style&gt;
+  p { color: red; }
+&lt;/style&gt;</code></pre>
+                        </div>
+
+                        <div class="method-card recommended">
+                            <h4>3. External CSS (Best practice):</h4>
+                            <pre><code class="language-html">&lt;!-- HTML --&gt;
+&lt;link rel="stylesheet" href="styles.css" /&gt;
+
+/* styles.css */
+p {
+  color: red;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- First Exercise -->
+                <div class="collapsible-section" data-section="first-exercise">
+                    <h2 id="first-exercise" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🛠 1.4 First CSS Exercise: Hello Color
+                    </h2>
+                    <div class="section-content">
+                        <div class="exercise-box">
+                            <h4>🔧 Task:</h4>
+                            <p>Create an HTML file with three paragraphs, and style them:</p>
+                            <ul>
+                                <li>One red</li>
+                                <li>One bold</li>
+                                <li>One with background yellow and padding</li>
+                            </ul>
+
+                            <div class="interactive-editor">
+                                <h5>Try it here:</h5>
+                                <div class="editor-container">
+                                        <textarea id="css-editor" placeholder="Write your CSS here...">p.red { color: red; }
+p.bold { font-weight: bold; }
+p.yellow { background: yellow; padding: 10px; }</textarea>
+                                    <div class="editor-preview">
+                                        <p class="red">Red text</p>
+                                        <p class="bold">Bold text</p>
+                                        <p class="yellow">Yellow background with padding</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Under the Hood -->
+                <div class="collapsible-section" data-section="under-the-hood">
+                    <h2 id="under-the-hood" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🔍 1.5 What Happens Under the Hood?
+                    </h2>
+                    <div class="section-content">
+                        <ul>
+                            <li>The browser <strong>parses HTML</strong>, finds the CSS files.</li>
+                            <li>CSS is <strong>parsed into a render tree</strong>.</li>
+                            <li>The browser applies the <strong>cascade rules</strong>, resolving:
+                                <ul>
+                                    <li>Specificity</li>
+                                    <li>Importance (<code>!important</code>)</li>
+                                    <li>Order</li>
+                                </ul>
+                            </li>
+                            <li>Then it <strong>paints the layout</strong> on screen.</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <p>🧬 We'll break this in-depth in Module 13 (Cascade & Inheritance).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checkpoint Quiz -->
+                <div class="collapsible-section" data-section="checkpoint-quiz">
+                    <h2 id="checkpoint-quiz" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        ✅ Checkpoint Quiz
+                    </h2>
+                    <div class="section-content">
+                        <div class="quiz-container">
+                            <div class="quiz-question">
+                                <h4>1. What does CSS stand for?</h4>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Computer Style Sheets</label>
+                                    <label><input type="radio" name="q1" value="b"> Cascading Style Sheets</label>
+                                    <label><input type="radio" name="q1" value="c"> Creative Style System</label>
+                                </div>
+                            </div>
+
+                            <div class="quiz-question">
+                                <h4>2. Why use external stylesheets over inline styles?</h4>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2" value="a"> They're faster</label>
+                                    <label><input type="radio" name="q2" value="b"> Better maintainability and reusability</label>
+                                    <label><input type="radio" name="q2" value="c"> They look better</label>
+                                </div>
+                            </div>
+
+                            <button class="quiz-submit" onclick="checkQuiz()">Check Answers</button>
+                            <div class="quiz-results" id="quiz-results"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="collapsible-section" data-section="best-practices">
+                    <h2 id="best-practices" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        💡 Best Practices
+                    </h2>
+                    <div class="section-content">
+                        <ul class="best-practices-list">
+                            <li>Always use external stylesheets for scalability.</li>
+                            <li>Avoid inline styles unless for quick testing or emails.</li>
+                            <li>Keep structure (HTML) and design (CSS) separate.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Common Mistakes -->
+                <div class="collapsible-section" data-section="common-mistakes">
+                    <h2 id="common-mistakes" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        ⚠️ Common Mistakes
+                    </h2>
+                    <div class="section-content">
+                        <div class="table-container">
+                            <table class="mistakes-table">
+                                <thead>
+                                <tr>
+                                    <th>Mistake</th>
+                                    <th>Why It's Bad</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Using inline styles</td>
+                                    <td>Hard to maintain, not reusable</td>
+                                </tr>
+                                <tr>
+                                    <td>Mixing style and content</td>
+                                    <td>Violates separation of concerns</td>
+                                </tr>
+                                <tr>
+                                    <td>Forgetting to link CSS file</td>
+                                    <td>No styles applied at all</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="collapsible-section" data-section="summary">
+                    <h2 id="summary" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🏁 Summary
+                    </h2>
+                    <div class="section-content">
+                        <p>You now understand:</p>
+                        <ul class="summary-list">
+                            <li>What CSS is</li>
+                            <li>How it integrates with HTML</li>
+                            <li>Where and how to write CSS</li>
+                            <li>What the browser does with it</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Interactive Challenge -->
+                <div class="collapsible-section" data-section="interactive-challenge">
+                    <h2 id="interactive-challenge" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🔁 Interactive Challenge
+                    </h2>
+                    <div class="section-content">
+                        <div class="challenge-box">
+                            <h4>Make your own "Business Card" using HTML + CSS:</h4>
+                            <ul>
+                                <li>A card (div) with name, role, and description</li>
+                                <li>Add styles: padding, border, color, font</li>
+                            </ul>
+
+                            <div class="challenge-editor">
+                                <div class="editor-tabs">
+                                    <button class="tab-button active" onclick="showTab('html')">HTML</button>
+                                    <button class="tab-button" onclick="showTab('css')">CSS</button>
+                                    <button class="tab-button" onclick="showTab('result')">Result</button>
+                                </div>
+
+                                <div class="tab-content active" id="html-tab">
+                                        <textarea id="html-editor" placeholder="Write your HTML here...">&lt;div class="business-card"&gt;
+  &lt;h3&gt;John Doe&lt;/h3&gt;
+  &lt;p class="role"&gt;Web Developer&lt;/p&gt;
+  &lt;p&gt;Passionate about creating amazing web experiences&lt;/p&gt;
+&lt;/div&gt;</textarea>
+                                </div>
+
+                                <div class="tab-content" id="css-tab">
+                                        <textarea id="css-challenge-editor" placeholder="Write your CSS here...">.business-card {
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  background: #f9f9f9;
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+.business-card h3 {
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.role {
+  color: #7f8c8d;
+  font-style: italic;
+}</textarea>
+                                </div>
+
+                                <div class="tab-content" id="result-tab">
+                                    <iframe id="result-frame" srcdoc=""></iframe>
+                                </div>
+                            </div>
+
+                            <button class="run-code-btn" onclick="runCode()">▶ Run Code</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module 2 -->
+            <section id="module2" class="content-section">
+                <h1>📘 Module 2: CSS Syntax & Selectors</h1>
+
+                <div class="goal-box">
+                    <h3>🎯 Goal:</h3>
+                    <p>Understand how CSS rules are structured, and how to target any element on a webpage using selectors. Learn specificity and how CSS decides which rule wins when there's a conflict.</p>
+                </div>
+
+                <!-- CSS Rule Syntax -->
+                <div class="collapsible-section" data-section="css-rule-syntax">
+                    <h2 id="css-rule-syntax" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🧱 2.1 CSS Rule Syntax
+                    </h2>
+                    <div class="section-content">
+                        <p>A <strong>CSS rule</strong> is made of:</p>
+
+                        <div class="code-example">
+                                <pre><code class="language-css">selector {
+  property: value;
+}</code></pre>
+                        </div>
+
+                        <ul>
+                            <li><strong>Selector</strong> – What HTML element(s) to target</li>
+                            <li><strong>Property</strong> – The style feature you want to change</li>
+                            <li><strong>Value</strong> – The setting for that feature</li>
+                        </ul>
+
+                        <div class="example-box">
+                            <h4>🧪 Example:</h4>
+                            <div class="code-example">
+                                    <pre><code class="language-css">h1 {
+  color: green;
+  font-size: 32px;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Types of Selectors -->
+                <div class="collapsible-section" data-section="types-of-selectors">
+                    <h2 id="types-of-selectors" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🧲 2.2 Types of Selectors
+                    </h2>
+                    <div class="section-content">
+                        <h3>🔹 1. Universal Selector – Targets everything</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">* {
+  margin: 0;
+  padding: 0;
+}</code></pre>
+                        </div>
+
+                        <h3>🔹 2. Type Selector – Targets HTML tags</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">p {
+  line-height: 1.6;
+}</code></pre>
+                        </div>
+
+                        <h3>🔹 3. Class Selector – Targets elements with a class</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">.card {
+  background: #f2f2f2;
+  padding: 20px;
+}</code></pre>
+                        </div>
+                        <p>HTML:</p>
+                        <div class="code-example">
+                            <pre><code class="language-html">&lt;div class="card"&gt;Hello&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3>🔹 4. ID Selector – Targets an element with a specific id</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">#banner {
+  height: 300px;
+}</code></pre>
+                        </div>
+                        <p>HTML:</p>
+                        <div class="code-example">
+                            <pre><code class="language-html">&lt;div id="banner"&gt;&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <p>✅ <strong>Best Practice</strong>: Use <strong>classes</strong> for styling. IDs should be unique and used for JavaScript or anchor linking.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grouping & Combining -->
+                <div class="collapsible-section" data-section="grouping-combining">
+                    <h2 id="grouping-combining" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🧬 2.3 Grouping & Combining Selectors
+                    </h2>
+                    <div class="section-content">
+                        <h3>Group multiple selectors</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">h1, h2, h3 {
+  font-family: 'Segoe UI', sans-serif;
+}</code></pre>
+                        </div>
+
+                        <h3>Combine selectors (descendant)</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">article p {
+  color: darkgray;
+}</code></pre>
+                        </div>
+                        <p>This selects all <code>p</code> inside an <code>article</code>.</p>
+
+                        <h3>Child combinator (>)</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">ul > li {
+  list-style: square;
+}</code></pre>
+                        </div>
+                        <p>Selects only <strong>direct</strong> <code>li</code> children of <code>ul</code>.</p>
+
+                        <h3>Adjacent sibling (+)</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">h1 + p {
+  margin-top: 0;
+}</code></pre>
+                        </div>
+                        <p>Selects the first <code>p</code> that follows an <code>h1</code>.</p>
+
+                        <h3>General sibling (~)</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">h1 ~ p {
+  color: gray;
+}</code></pre>
+                        </div>
+                        <p>Selects <strong>all</strong> <code>p</code> siblings after <code>h1</code>.</p>
+                    </div>
+                </div>
+
+                <!-- Attribute Selectors -->
+                <div class="collapsible-section" data-section="attribute-selectors">
+                    <h2 id="attribute-selectors" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🧪 2.4 Attribute Selectors
+                    </h2>
+                    <div class="section-content">
+                        <p>Target elements with specific attributes.</p>
+
+                        <div class="code-example">
+                                <pre><code class="language-css">input[type="text"] {
+  border: 1px solid #ccc;
+}</code></pre>
+                        </div>
+
+                        <p>Other examples:</p>
+                        <div class="code-example">
+                                <pre><code class="language-css">a[target="_blank"] { color: red; }
+img[alt~="logo"] { width: 200px; }</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pseudo-classes Preview -->
+                <div class="collapsible-section" data-section="pseudo-classes-preview">
+                    <h2 id="pseudo-classes-preview" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🎭 2.5 Pseudo-classes (Preview)
+                    </h2>
+                    <div class="section-content">
+                        <p>We'll go deep into this in <strong>Module 12</strong>, but a sneak peek:</p>
+
+                        <div class="code-example">
+                                <pre><code class="language-css">a:hover {
+  color: blue;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specificity & Cascade -->
+                <div class="collapsible-section" data-section="specificity-cascade">
+                    <h2 id="specificity-cascade" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🎚 2.6 Specificity & Cascade (Preview)
+                    </h2>
+                    <div class="section-content">
+                        <h3>Specificity = How CSS decides which rule wins</h3>
+
+                        <div class="table-container">
+                            <table class="module-table">
+                                <thead>
+                                <tr>
+                                    <th>Selector Type</th>
+                                    <th>Weight</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Inline styles: <code>style=""</code></td>
+                                    <td><strong>1000</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>ID selectors: <code>#id</code></td>
+                                    <td><strong>100</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Class/attributes/pseudo: <code>.class</code>, <code>[attr]</code>, <code>:hover</code></td>
+                                    <td><strong>10</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Type selectors: <code>div</code>, <code>h1</code></td>
+                                    <td><strong>1</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Universal <code>*</code></td>
+                                    <td><strong>0</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="example-box">
+                            <h4>🧪 Example:</h4>
+                            <div class="code-example">
+                                    <pre><code class="language-css">/* Specificity 10 */
+.button {
+  color: red;
+}
+
+/* Specificity 100 */
+#submit {
+  color: blue;
+}</code></pre>
+                            </div>
+                            <p>If both apply to the same element, the one with <strong>higher specificity</strong> wins: <code>#submit</code> → blue.</p>
+                        </div>
+
+                        <div class="info-box">
+                            <p>We'll dive <em>deeper</em> into this in Module 13.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2 Quiz -->
+                <div class="collapsible-section" data-section="module2-quiz">
+                    <h2 id="module2-quiz" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🧠 Quiz Checkpoint
+                    </h2>
+                    <div class="section-content">
+                        <div class="quiz-container">
+                            <div class="quiz-question">
+                                <h4>1. What is the difference between class and ID selectors?</h4>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2_1" value="a"> They're the same thing</label>
+                                    <label><input type="radio" name="q2_1" value="b"> IDs are unique, classes can be reused</label>
+                                    <label><input type="radio" name="q2_1" value="c"> Classes are faster</label>
+                                </div>
+                            </div>
+
+                            <div class="quiz-question">
+                                <h4>2. What's the difference between `div p` and `div > p`?</h4>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2_2" value="a"> They're identical</label>
+                                    <label><input type="radio" name="q2_2" value="b"> div p selects all p inside div, div > p only direct children</label>
+                                    <label><input type="radio" name="q2_2" value="c"> div > p is faster</label>
+                                </div>
+                            </div>
+
+                            <button class="quiz-submit" onclick="checkModule2Quiz()">Check Answers</button>
+                            <div class="quiz-results" id="module2-quiz-results"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Practice Tasks -->
+                <div class="collapsible-section" data-section="module2-tasks">
+                    <h2 id="module2-tasks" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        ⚙️ Practice Tasks
+                    </h2>
+                    <div class="section-content">
+                        <div class="challenge-box">
+                            <h4>💡 Task 1:</h4>
+                            <p>Create an HTML page with:</p>
+                            <ul>
+                                <li>A <code>#header</code> section</li>
+                                <li>Multiple <code>.card</code> boxes</li>
+                                <li>Some <code>p</code> and <code>a</code> tags inside the cards</li>
+                            </ul>
+                            <p><strong>Then:</strong></p>
+                            <ul>
+                                <li>Use group selectors to style all headings</li>
+                                <li>Add padding & background to <code>.card</code></li>
+                                <li>Change <code>a:hover</code> color</li>
+                            </ul>
+
+                            <div class="challenge-editor">
+                                <div class="editor-tabs">
+                                    <button class="tab-button active" onclick="showModule2Tab('html')">HTML</button>
+                                    <button class="tab-button" onclick="showModule2Tab('css')">CSS</button>
+                                    <button class="tab-button" onclick="showModule2Tab('result')">Result</button>
+                                </div>
+
+                                <div class="tab-content active" id="module2-html-tab">
+                                        <textarea id="module2-html-editor" placeholder="Write your HTML here...">&lt;div id="header"&gt;
+  &lt;h1&gt;My Website&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div class="card"&gt;
+  &lt;h2&gt;Card Title&lt;/h2&gt;
+  &lt;p&gt;This is a card with some content.&lt;/p&gt;
+  &lt;a href="#"&gt;Read more&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="card"&gt;
+  &lt;h3&gt;Another Card&lt;/h3&gt;
+  &lt;p&gt;More interesting content here.&lt;/p&gt;
+  &lt;a href="#"&gt;Learn more&lt;/a&gt;
+&lt;/div&gt;</textarea>
+                                </div>
+
+                                <div class="tab-content" id="module2-css-tab">
+                                        <textarea id="module2-css-editor" placeholder="Write your CSS here...">/* Group selectors for all headings */
+h1, h2, h3 {
+  color: #2c3e50;
+  font-family: Arial, sans-serif;
+}
+
+/* Header styling */
+#header {
+  background: #3498db;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Card styling */
+.card {
+  background: #f8f9fa;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+/* Link hover effect */
+.card a:hover {
+  color: #e74c3c;
+  text-decoration: underline;
+}</textarea>
+                                </div>
+
+                                <div class="tab-content" id="module2-result-tab">
+                                    <iframe id="module2-result-frame" srcdoc=""></iframe>
+                                </div>
+                            </div>
+
+                            <button class="run-code-btn" onclick="runModule2Code()">▶ Run Code</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module 3 -->
+            <section id="module3" class="content-section">
+                <h1>📘 Module 3: Colors, Units & Values</h1>
+
+                <div class="goal-box">
+                    <h3>🎯 Goal:</h3>
+                    <p>Master how to use color, length, and value types in CSS. Learn the difference between px, em, %, and other units, and how to apply colors using different models and functions.</p>
+                </div>
+
+                <!-- Working with Colors -->
+                <div class="collapsible-section" data-section="working-with-colors">
+                    <h2 id="working-with-colors" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🎨 3.1 Working with Colors in CSS
+                    </h2>
+                    <div class="section-content">
+                        <p>CSS supports multiple ways to define colors:</p>
+
+                        <h3>✅ 1. Named Colors</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">color: red;
+background-color: lightblue;</code></pre>
+                        </div>
+                        <p>📘 Over 140 color names are supported, like <code>blue</code>, <code>darkorange</code>, <code>rebeccapurple</code>.</p>
+
+                        <h3>✅ 2. Hexadecimal (#RRGGBB)</h3>
+                        <div class="code-example">
+                            <pre><code class="language-css">color: #ff5733;</code></pre>
+                        </div>
+                        <ul>
+                            <li><code>#ff5733</code> → Red-orange</li>
+                            <li><code>#000000</code> → Black</li>
+                            <li><code>#ffffff</code> → White</li>
+                        </ul>
+                        <p>🧠 Shorthand available:</p>
+                        <div class="code-example">
+                            <pre><code class="language-css">#fff /* = #ffffff */</code></pre>
+                        </div>
+
+                        <h3>✅ 3. RGB & RGBA</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">color: rgb(255, 87, 51);
+color: rgba(255, 87, 51, 0.5); /* with transparency */</code></pre>
+                        </div>
+                        <ul>
+                            <li>Values: <code>0</code> to <code>255</code></li>
+                            <li><code>rgba()</code> allows <strong>opacity</strong></li>
+                        </ul>
+
+                        <h3>✅ 4. HSL & HSLA</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">color: hsl(12, 100%, 60%);
+color: hsla(12, 100%, 60%, 0.6);</code></pre>
+                        </div>
+                        <ul>
+                            <li><strong>Hue</strong>: 0–360° (a color wheel)</li>
+                            <li><strong>Saturation</strong>: 0–100%</li>
+                            <li><strong>Lightness</strong>: 0–100%</li>
+                        </ul>
+                        <p>📌 HSL is often more intuitive for design adjustments.</p>
+
+                        <div class="interactive-editor">
+                            <h5>Try different color formats:</h5>
+                            <div class="editor-container">
+                                    <textarea id="color-editor" placeholder="Try different color formats...">/* Try these colors */
+.sample1 { background: #ff6b6b; }
+.sample2 { background: rgb(74, 144, 226); }
+.sample3 { background: hsl(120, 100%, 75%); }
+.sample4 { background: rgba(255, 107, 107, 0.5); }</textarea>
+                                <div class="editor-preview">
+                                    <div class="sample1" style="width: 50px; height: 50px; margin: 5px; display: inline-block;">1</div>
+                                    <div class="sample2" style="width: 50px; height: 50px; margin: 5px; display: inline-block;">2</div>
+                                    <div class="sample3" style="width: 50px; height: 50px; margin: 5px; display: inline-block;">3</div>
+                                    <div class="sample4" style="width: 50px; height: 50px; margin: 5px; display: inline-block;">4</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS Units -->
+                <div class="collapsible-section" data-section="css-units">
+                    <h2 id="css-units" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        📏 3.2 CSS Units of Measurement
+                    </h2>
+                    <div class="section-content">
+                        <p>CSS supports <strong>absolute</strong> and <strong>relative</strong> units.</p>
+
+                        <h3>🎯 Absolute Units (Fixed)</h3>
+                        <div class="table-container">
+                            <table class="module-table">
+                                <thead>
+                                <tr>
+                                    <th>Unit</th>
+                                    <th>Meaning</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><code>px</code></td>
+                                    <td>Pixels — most common unit</td>
+                                </tr>
+                                <tr>
+                                    <td><code>cm</code>, <code>mm</code>, <code>in</code></td>
+                                    <td>Physical length — for print</td>
+                                </tr>
+                                <tr>
+                                    <td><code>pt</code>, <code>pc</code></td>
+                                    <td>Points and picas — typography/print</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="code-example">
+                                <pre><code class="language-css">font-size: 16px;
+margin: 10mm;</code></pre>
+                        </div>
+                        <p>✅ <strong>Use case</strong>: <code>px</code> is best for precision and screen control.</p>
+
+                        <h3>🎯 Relative Units (Flexible)</h3>
+                        <div class="table-container">
+                            <table class="module-table">
+                                <thead>
+                                <tr>
+                                    <th>Unit</th>
+                                    <th>Relative to</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><code>%</code></td>
+                                    <td>Parent element</td>
+                                </tr>
+                                <tr>
+                                    <td><code>em</code></td>
+                                    <td>Font-size of <strong>element itself</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><code>rem</code></td>
+                                    <td>Font-size of <strong>root element</strong> (<code>html</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>vw</code>, <code>vh</code></td>
+                                    <td>Viewport width/height</td>
+                                </tr>
+                                <tr>
+                                    <td><code>vmin</code>, <code>vmax</code></td>
+                                    <td>Smaller/larger of vw/vh</td>
+                                </tr>
+                                <tr>
+                                    <td><code>ch</code></td>
+                                    <td>Width of the <code>0</code> character</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>🔍 Comparison: em vs rem</h3>
+                        <div class="code-example">
+                                <pre><code class="language-css">html { font-size: 16px; }
+
+.container {
+  font-size: 1.5rem; /* 24px */
+  padding: 2em;      /* 2 × container font size = 48px */
+}</code></pre>
+                        </div>
+                        <p>🧠 <code>rem</code> is more predictable for layouts.<br>
+                            🧠 <code>em</code> is useful for scalable components (e.g., buttons, modals).</p>
+                    </div>
+                </div>
+
+                <!-- Value Types -->
+                <div class="collapsible-section" data-section="value-types">
+                    <h2 id="value-types" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🧠 3.3 Value Types in CSS
+                    </h2>
+                    <div class="section-content">
+                        <p>In CSS, <strong>every property accepts certain value types</strong>:</p>
+
+                        <div class="table-container">
+                            <table class="module-table">
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Example</th>
+                                    <th>Used For</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Length</td>
+                                    <td><code>16px</code>, <code>1em</code></td>
+                                    <td>font, padding, margin</td>
+                                </tr>
+                                <tr>
+                                    <td>Color</td>
+                                    <td><code>#fff</code>, <code>rgb()</code></td>
+                                    <td>color, background</td>
+                                </tr>
+                                <tr>
+                                    <td>Percentage</td>
+                                    <td><code>80%</code></td>
+                                    <td>width, height, transforms</td>
+                                </tr>
+                                <tr>
+                                    <td>Keywords</td>
+                                    <td><code>auto</code>, <code>inherit</code></td>
+                                    <td>position, display, font-weight</td>
+                                </tr>
+                                <tr>
+                                    <td>Functions</td>
+                                    <td><code>calc()</code>, <code>url()</code></td>
+                                    <td>sizes, gradients, images</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The calc() Function -->
+                <div class="collapsible-section" data-section="calc-function">
+                    <h2 id="calc-function" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🧮 3.4 The calc() Function
+                    </h2>
+                    <div class="section-content">
+                        <p>Combine units and do math directly in CSS:</p>
+
+                        <div class="code-example">
+                                <pre><code class="language-css">width: calc(100% - 40px);
+font-size: calc(1rem + 0.5vw);</code></pre>
+                        </div>
+
+                        <p>⚠️ <strong>No commas allowed</strong>, and <strong>spacing matters</strong>.</p>
+
+                        <div class="interactive-editor">
+                            <h5>Try calc() function:</h5>
+                            <div class="editor-container">
+                                    <textarea id="calc-editor" placeholder="Try calc() function...">.calc-demo {
+  width: calc(100% - 40px);
+  height: calc(50px + 2em);
+  font-size: calc(1rem + 0.5vw);
+  margin: calc(10px * 2);
+  background: #f0f0f0;
+  padding: 20px;
+}</textarea>
+                                <div class="editor-preview">
+                                    <div class="calc-demo">This box uses calc() for sizing!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transparent Colors -->
+                <div class="collapsible-section" data-section="transparent-colors">
+                    <h2 id="transparent-colors" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🌈 3.5 Transparent Colors
+                    </h2>
+                    <div class="section-content">
+                        <p>Opacity can be controlled by:</p>
+
+                        <h3>✅ rgba(), hsla()</h3>
+                        <div class="code-example">
+                            <pre><code class="language-css">background-color: rgba(0, 0, 0, 0.2);</code></pre>
+                        </div>
+
+                        <h3>✅ opacity Property</h3>
+                        <div class="code-example">
+                            <pre><code class="language-css">opacity: 0.5;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <p>❗ <code>opacity</code> affects <strong>all children</strong>. <code>rgba()</code> is preferred for just backgrounds.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3 Quiz -->
+                <div class="collapsible-section" data-section="module3-quiz">
+                    <h2 id="module3-quiz" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🧠 Quiz Checkpoint
+                    </h2>
+                    <div class="section-content">
+                        <div class="quiz-container">
+                            <div class="quiz-question">
+                                <h4>1. What's the difference between em and rem?</h4>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q3_1" value="a"> em is relative to parent, rem to root element</label>
+                                    <label><input type="radio" name="q3_1" value="b"> They're the same thing</label>
+                                    <label><input type="radio" name="q3_1" value="c"> rem is faster</label>
+                                </div>
+                            </div>
+
+                            <div class="quiz-question">
+                                <h4>2. Why is rgba() better than opacity in some cases?</h4>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q3_2" value="a"> It's faster to render</label>
+                                    <label><input type="radio" name="q3_2" value="b"> rgba() doesn't affect child elements</label>
+                                    <label><input type="radio" name="q3_2" value="c"> It supports more colors</label>
+                                </div>
+                            </div>
+
+                            <button class="quiz-submit" onclick="checkModule3Quiz()">Check Answers</button>
+                            <div class="quiz-results" id="module3-quiz-results"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mini Project -->
+                <div class="collapsible-section" data-section="module3-project">
+                    <h2 id="module3-project" class="section-header">
+                        <i class="fas fa-chevron-right"></i>
+                        🧱 Mini Project: Responsive Product Card
+                    </h2>
+                    <div class="section-content">
+                        <div class="challenge-box">
+                            <h4>Design a responsive product card that uses:</h4>
+                            <ul>
+                                <li><code>rem</code> for padding and spacing</li>
+                                <li><code>hsl()</code> for color design</li>
+                                <li><code>calc()</code> for width or font-size</li>
+                                <li><code>vw</code> for dynamic scaling</li>
+                            </ul>
+
+                            <div class="challenge-editor">
+                                <div class="editor-tabs">
+                                    <button class="tab-button active" onclick="showModule3Tab('html')">HTML</button>
+                                    <button class="tab-button" onclick="showModule3Tab('css')">CSS</button>
+                                    <button class="tab-button" onclick="showModule3Tab('result')">Result</button>
+                                </div>
+
+                                <div class="tab-content active" id="module3-html-tab">
+                                        <textarea id="module3-html-editor" placeholder="Write your HTML here...">&lt;div class="product-card"&gt;
+  &lt;div class="product-image"&gt;📱&lt;/div&gt;
+  &lt;div class="product-info"&gt;
+    &lt;h3 class="product-title"&gt;Smartphone Pro&lt;/h3&gt;
+    &lt;p class="product-price"&gt;$999&lt;/p&gt;
+    &lt;p class="product-description"&gt;Latest flagship with advanced features and premium design.&lt;/p&gt;
+    &lt;button class="product-button"&gt;Add to Cart&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</textarea>
+                                </div>
+
+                                <div class="tab-content" id="module3-css-tab">
+                                        <textarea id="module3-css-editor" placeholder="Write your CSS here...">.product-card {
+  width: calc(100% - 2rem);
+  max-width: 300px;
+  background: hsl(0, 0%, 98%);
+  border: 1px solid hsla(0, 0%, 0%, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.1);
+}
+
+.product-image {
+  font-size: calc(2rem + 2vw);
+  text-align: center;
+  padding: 2rem 0;
+  background: hsl(200, 100%, 95%);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.product-title {
+  font-size: calc(1.2rem + 0.5vw);
+  color: hsl(220, 100%, 30%);
+  margin-bottom: 0.5rem;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: hsl(350, 100%, 50%);
+  margin-bottom: 1rem;
+}
+
+.product-description {
+  color: hsl(0, 0%, 40%);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.product-button {
+  background: hsl(220, 100%, 50%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.product-button:hover {
+  background: hsl(220, 100%, 40%);
+}</textarea>
+                                </div>
+
+                                <div class="tab-content" id="module3-result-tab">
+                                    <iframe id="module3-result-frame" srcdoc=""></iframe>
+                                </div>
+                            </div>
+
+                            <button class="run-code-btn" onclick="runModule3Code()">▶ Run Code</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobile-menu-toggle">
+    <i class="fas fa-bars"></i>
+</button>
+
+<!-- Keyboard Shortcuts Help -->
+<div class="shortcuts-help" id="shortcuts-help">
+    <h3>Keyboard Shortcuts</h3>
+    <div class="shortcut-grid">
+        <div class="shortcut-item">
+            <kbd>Ctrl</kbd> + <kbd>K</kbd>
+            <span>Open search</span>
+        </div>
+        <div class="shortcut-item">
+            <kbd>Ctrl</kbd> + <kbd>B</kbd>
+            <span>Toggle sidebar</span>
+        </div>
+        <div class="shortcut-item">
+            <kbd>Ctrl</kbd> + <kbd>D</kbd>
+            <span>Toggle theme</span>
+        </div>
+        <div class="shortcut-item">
+            <kbd>?</kbd>
+            <span>Show shortcuts</span>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
